@@ -164,6 +164,139 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/13/%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小曾">
+      <meta itemprop="description" content="长得丑就要多读书">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="开心的小曾">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/13/%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE/" class="post-title-link" itemprop="url">一致性协议</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-13 21:16:07 / 修改时间：22:40:05" itemprop="dateCreated datePublished" datetime="2022-11-13T21:16:07+08:00">2022-11-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">分布式</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="两阶段协议（2PC）"><a href="#两阶段协议（2PC）" class="headerlink" title="两阶段协议（2PC）"></a>两阶段协议（2PC）</h2><h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><ol>
+<li>协调者 coordinator</li>
+<li>事务参与者 participant</li>
+</ol>
+<h3 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h3><p>（1）请求阶段 prepare或投票阶段vote phase</p>
+<p>协调者向每个事务参与者发送prepare消息。每个参与者本地执行事务（写redo和undo log）不提交并返回成功或返回失败。</p>
+<p>（2）提交阶段 Commit</p>
+<p>正常情况：</p>
+<ol>
+<li><p>全部参与者都返回执行成功</p>
+<p>协调者向每个参与者发出commit消息，每个参与者提交事务</p>
+</li>
+<li><p>如果有参与者返回执行失败或超时</p>
+<p>协调者向所有参与者发送回滚消息，每个参与者回滚事务</p>
+</li>
+</ol>
+<h3 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h3><ol>
+<li><p>同步阻塞</p>
+<p>执行过程中，所有参与者都是事务阻塞型的。会导致从prepare阶段到提交阶段资源一直被占用。</p>
+</li>
+<li><p>单点故障</p>
+<p>协调者发生故障，（在第二阶段宕机）参与者会一直阻塞。</p>
+</li>
+<li><p>数据不一致</p>
+<p>如果发送commit请求出现分区，导致一部分参与者提交，一部分在等待，出现数据不一致的情况。</p>
+</li>
+<li><p>存在无法解决的问题</p>
+<p>协调者发出commit后宕机，以及唯一接收到这条消息的参与者同时也宕机了。那么就算选举新的协调者，这条事务的状态也是不确定的。</p>
+</li>
+</ol>
+<h2 id="三阶段协议（3PC）"><a href="#三阶段协议（3PC）" class="headerlink" title="三阶段协议（3PC）"></a>三阶段协议（3PC）</h2><p>3PC主要有：CanCommit阶段、PreCommit阶段和DoCommit阶段</p>
+<h3 id="CanCommit阶段"><a href="#CanCommit阶段" class="headerlink" title="CanCommit阶段"></a>CanCommit阶段</h3><ol>
+<li><p>事务询问：协调者发送CanCommit请求。</p>
+</li>
+<li><p>响应：参与者收到后，如果认为自己可以顺利执行就返回Yes，否则返回No</p>
+<p>此时不会阻塞资源</p>
+</li>
+</ol>
+<h3 id="PreCommit阶段"><a href="#PreCommit阶段" class="headerlink" title="PreCommit阶段"></a>PreCommit阶段</h3><p>分两种情况：</p>
+<ol>
+<li><p>CanCommit阶段都返回Yes:</p>
+<p>(1) 协调者发送PreCommit请求，进入Prepared阶段</p>
+<p>(2) 参与者收到后，本地执行事务（记录undo和redo log）</p>
+<p>(3)返回ACK响应</p>
+</li>
+<li><p>CanCommit阶段收到No：</p>
+<p>(1) 协调者发送abort请求。</p>
+<p>(2) 参与者收到abort请求执行事务的中断。</p>
+</li>
+</ol>
+<h3 id="DoCommit"><a href="#DoCommit" class="headerlink" title="DoCommit"></a>DoCommit</h3><ol>
+<li><p>如果所有参与者都能执行(收到所有ACK)</p>
+<p>(1) 协调者向所有参与者发送commit</p>
+<p>(2) 参与者收到commit通知后，执行commit操作。（此时释放资源）</p>
+<p>(3) 参与者反馈事务提交结果</p>
+<p>(4) 协调者收到所有ACK后完成事务</p>
+</li>
+<li><p>协调者没收到ACK，就执行中断事务：</p>
+<p>(1) 协调者发送中断请求</p>
+<p>(2) 参与者回滚，释放资源</p>
+<p>(3) 反馈结果。</p>
+</li>
+</ol>
+<p>进入第三阶段时，如果网络超时，如果参与者没收到commit或abort，参与者会commit。因为进入第三阶段了事务成功的机率很大。但这也会导致数据不一致的情况。</p>
+<p>3PC相对于2PC的区别，主要是解决单点故障的问题和阻塞的问题：通过加了一个CanCommit阶段来减少阻塞时间。在阶段三如果出现故障，参与者也会执行。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35616810">分布式一致性之两阶段提交协议、三阶提交协议</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/13/%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA-%E4%B8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -189,7 +322,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-11-13 14:40:02 / 修改时间：15:39:05" itemprop="dateCreated datePublished" datetime="2022-11-13T14:40:02+08:00">2022-11-13</time>
+              <time title="创建时间：2022-11-13 14:40:02 / 修改时间：15:41:03" itemprop="dateCreated datePublished" datetime="2022-11-13T14:40:02+08:00">2022-11-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,6 +375,7 @@
 <li><a target="_blank" rel="noopener" href="http://thinkinjava.cn/2018/03/26/2018/2018-03-26-%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA(%E4%B8%80)-%E2%80%94%E2%80%94-CAP-%E5%AE%9A%E7%90%86/">分布式理论(一)-——-CAP-定理</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/dev-spec/spec/dev-th-base.html">分布式理论 - BASE</a></li>
 <li><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/481069">CAP 理论：分布式场景下我们真的只能三选二吗？</a></li>
+<li><a target="_blank" rel="noopener" href="http://thinkinjava.cn/2018/03/26/2018/2018-03-26-%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA(%E4%BA%8C)%E2%80%94%E2%80%94Base-%E7%90%86%E8%AE%BA/">分布式理论(二)——Base-理论</a></li>
 </ol>
 
       
@@ -523,7 +657,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
