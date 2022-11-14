@@ -30,7 +30,7 @@
 <meta property="og:description" content="两阶段协议（2PC）角色 协调者 coordinator 事务参与者 participant  执行过程（1）请求阶段 prepare或投票阶段vote phase 协调者向每个事务参与者发送prepare消息。每个参与者本地执行事务（写redo和undo log）不提交并返回成功或返回失败。 （2）提交阶段 Commit 正常情况：  全部参与者都返回执行成功 协调者向每个参与者发出commit">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-13T13:16:07.000Z">
-<meta property="article:modified_time" content="2022-11-13T14:40:05.950Z">
+<meta property="article:modified_time" content="2022-11-14T13:14:57.289Z">
 <meta property="article:author" content="小曾">
 <meta property="article:tag" content="分布式">
 <meta name="twitter:card" content="summary">
@@ -190,10 +190,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-13 21:16:07 / 修改时间：22:40:05" itemprop="dateCreated datePublished" datetime="2022-11-13T21:16:07+08:00">2022-11-13</time>
+              <time title="创建时间：2022-11-13 21:16:07" itemprop="dateCreated datePublished" datetime="2022-11-13T21:16:07+08:00">2022-11-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-14 21:14:57" itemprop="dateModified" datetime="2022-11-14T21:14:57+08:00">2022-11-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -287,7 +293,34 @@
 </ol>
 <p>进入第三阶段时，如果网络超时，如果参与者没收到commit或abort，参与者会commit。因为进入第三阶段了事务成功的机率很大。但这也会导致数据不一致的情况。</p>
 <p>3PC相对于2PC的区别，主要是解决单点故障的问题和阻塞的问题：通过加了一个CanCommit阶段来减少阻塞时间。在阶段三如果出现故障，参与者也会执行。</p>
+<h2 id="Paxos"><a href="#Paxos" class="headerlink" title="Paxos"></a>Paxos</h2><h3 id="角色-1"><a href="#角色-1" class="headerlink" title="角色"></a>角色</h3><ul>
+<li>Proposer: 可以发出提案</li>
+<li>Acceptor: 接受提案</li>
+<li>Learners: Acceptor告诉Learner哪个value被选定，Learner就认为那个value被选定</li>
+</ul>
+<p>Paxos算法分为三个阶段：</p>
+<h3 id="阶段一（Prepare）"><a href="#阶段一（Prepare）" class="headerlink" title="阶段一（Prepare）"></a>阶段一（Prepare）</h3><p>这一阶段主要是由Proposer向Acceptor发出Prepare请求，Acceptor收到后进行Promise承诺。</p>
+<ul>
+<li><p><strong>Prepare：</strong>Proposer选择一个提案编号Proposal ID(全局唯一且递增)，向所有Acceptor发送编号为Proposal ID的prepare请求（只携带编号，不带内容）。</p>
+</li>
+<li><p><strong>Promise：</strong>Acceptor收到一个编号为ID的Prepare请求后做出两个承诺一个应答。<br>承诺一：不接受Proposal ID小于等于当前ID的Prepare请求</p>
+<p>承诺二：不接受Propasal ID小于当前请求的Propose请求<br>应答： 不违背承诺的前提下，回复自己已经Accept过的提案中，Proposal ID最大的那个的ID和Value，没有Accept过提案的话就返回空。</p>
+</li>
+</ul>
+<p>在阶段一的情况下，Proposer的提案是没有被接受的，因为提案内容没有被发送，这一阶段只是占个坑。</p>
+<h3 id="阶段二（Accept）"><a href="#阶段二（Accept）" class="headerlink" title="阶段二（Accept）"></a>阶段二（Accept）</h3><p>Proposal收到多数Acceptor承诺的Promise后，向Acceptor发送Propose请求，Acceptor收到后进行Accept处理</p>
+<ul>
+<li><strong>Propose：</strong>Proposer收到多数Acceptor的Promise应答后，会从他们的应答中选出ID最大的Value作为提案内容，如果返回的提案内容为空，那么就自己决定提案。然后将[当前Proposal ID，Value]向所有Acceptors发送Propose请求。</li>
+<li><strong>Accept：</strong>Acceptor收到Propose请求后，在不违背自己做出的承诺下，接受并持久化当前的Proposal ID和提案Value。</li>
+</ul>
+<p>这里需要注意的是，Proposer不会执着于让自己的提案通过，而是希望尽快达成一致。所以当Prepare阶段收到大多数响应时，Proposer也不是直接发送自己的题案，而是根据Acceptor是否返回了Value，有就挑一个最大的（这里等于选用了别人的提案，让大家尽快达成一致），没有就用自己的提案。（V是Acceptor已接受的最大编号的提案内容）。</p>
+<h3 id="阶段三（Learn）"><a href="#阶段三（Learn）" class="headerlink" title="阶段三（Learn）"></a>阶段三（Learn）</h3><p>Proposer在收到多数Accept之后，标志着Accept成功，决议形成。将形成的决议发送给所有Learners。</p>
+<p>缺点：复杂，且可能产生活锁。</p>
+<h2 id="Raft"><a href="#Raft" class="headerlink" title="Raft"></a>Raft</h2><p>raft算法是一种Multi-Paxos算法，是在Multi-Paxos基础上，做了一些简化和限制。增加了日志，只支持领导者、跟随者、候选人三种状态。</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35616810">分布式一致性之两阶段提交协议、三阶提交协议</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/algorithm/alg-domain-distribute-x-paxos.html">分布式算法 - Paxos算法</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19787937/answer/107750652">如何浅显易懂地解说 <em>Paxos</em> 的<em>算法</em>？</a></p>
+<p><a target="_blank" rel="noopener" href="http://thesecretlivesofdata.com/raft/">动画演示Raft</a></p>
 
     </div>
 
@@ -368,7 +401,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E5%8D%8F%E8%AE%AE%EF%BC%882PC%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">两阶段协议（2PC）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E8%89%B2"><span class="nav-number">1.1.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%9C%A8%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">存在问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E9%98%B6%E6%AE%B5%E5%8D%8F%E8%AE%AE%EF%BC%883PC%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">三阶段协议（3PC）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CanCommit%E9%98%B6%E6%AE%B5"><span class="nav-number">2.1.</span> <span class="nav-text">CanCommit阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PreCommit%E9%98%B6%E6%AE%B5"><span class="nav-number">2.2.</span> <span class="nav-text">PreCommit阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DoCommit"><span class="nav-number">2.3.</span> <span class="nav-text">DoCommit</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E5%8D%8F%E8%AE%AE%EF%BC%882PC%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">两阶段协议（2PC）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E8%89%B2"><span class="nav-number">1.1.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%9C%A8%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">存在问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E9%98%B6%E6%AE%B5%E5%8D%8F%E8%AE%AE%EF%BC%883PC%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">三阶段协议（3PC）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CanCommit%E9%98%B6%E6%AE%B5"><span class="nav-number">2.1.</span> <span class="nav-text">CanCommit阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PreCommit%E9%98%B6%E6%AE%B5"><span class="nav-number">2.2.</span> <span class="nav-text">PreCommit阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DoCommit"><span class="nav-number">2.3.</span> <span class="nav-text">DoCommit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Paxos"><span class="nav-number">3.</span> <span class="nav-text">Paxos</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E8%89%B2-1"><span class="nav-number">3.1.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%88Prepare%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">阶段一（Prepare）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5%E4%BA%8C%EF%BC%88Accept%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">阶段二（Accept）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%89%EF%BC%88Learn%EF%BC%89"><span class="nav-number">3.4.</span> <span class="nav-text">阶段三（Learn）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Raft"><span class="nav-number">4.</span> <span class="nav-text">Raft</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
