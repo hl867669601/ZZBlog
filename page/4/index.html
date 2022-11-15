@@ -22,38 +22,30 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="两阶段协议（2PC）角色 协调者 coordinator 事务参与者 participant  执行过程（1）请求阶段 prepare或投票阶段vote phase 协调者向每个事务参与者发送prepare消息。每个参与者本地执行事务（写redo和undo log）不提交并返回成功或返回失败。 （2）提交阶段 Commit 正常情况：  全部参与者都返回执行成功 协调者向每个参与者发出commit">
-<meta property="og:type" content="article">
-<meta property="og:title" content="一致性协议">
-<meta property="og:url" content="http://example.com/2022/11/13/%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE/index.html">
+  <meta name="description" content="长得丑就要多读书">
+<meta property="og:type" content="website">
+<meta property="og:title" content="开心的小曾">
+<meta property="og:url" content="http://example.com/page/4/index.html">
 <meta property="og:site_name" content="开心的小曾">
-<meta property="og:description" content="两阶段协议（2PC）角色 协调者 coordinator 事务参与者 participant  执行过程（1）请求阶段 prepare或投票阶段vote phase 协调者向每个事务参与者发送prepare消息。每个参与者本地执行事务（写redo和undo log）不提交并返回成功或返回失败。 （2）提交阶段 Commit 正常情况：  全部参与者都返回执行成功 协调者向每个参与者发出commit">
+<meta property="og:description" content="长得丑就要多读书">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/..%5Cresources%5C%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%5Cv2-94ccf7c98d908bfbdf3ff86af0ce824f_r.jpg">
-<meta property="og:image" content="http://example.com/..%5Cresources%5C%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%5Calg-dst-raft-9-16684402623122.jpg">
-<meta property="og:image" content="http://example.com/..%5Cresources%5C%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%5Calg-dst-raft-10-16684402964214.jpg">
-<meta property="og:image" content="http://example.com/..%5Cresources%5C%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%5C1240.png">
-<meta property="article:published_time" content="2022-11-13T13:16:07.000Z">
-<meta property="article:modified_time" content="2022-11-15T00:27:23.145Z">
 <meta property="article:author" content="小曾">
-<meta property="article:tag" content="分布式">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/..%5Cresources%5C%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%5Cv2-94ccf7c98d908bfbdf3ff86af0ce824f_r.jpg">
 
-<link rel="canonical" href="http://example.com/2022/11/13/%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE/">
+<link rel="canonical" href="http://example.com/page/4/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
-    isPost : true,
+    isHome : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>一致性协议 | 开心的小曾</title>
+  <title>开心的小曾</title>
   
 
 
@@ -166,10 +158,9 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content index posts-expand">
             
-
-    
+      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -185,9 +176,10 @@
       <meta itemprop="name" content="开心的小曾">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          一致性协议
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/13/%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE/" class="post-title-link" itemprop="url">一致性协议</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -216,13 +208,6 @@
             </span>
 
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
 
         </div>
       </header>
@@ -233,7 +218,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="两阶段协议（2PC）"><a href="#两阶段协议（2PC）" class="headerlink" title="两阶段协议（2PC）"></a>两阶段协议（2PC）</h2><h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><ol>
+          <h2 id="两阶段协议（2PC）"><a href="#两阶段协议（2PC）" class="headerlink" title="两阶段协议（2PC）"></a>两阶段协议（2PC）</h2><h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><ol>
 <li>协调者 coordinator</li>
 <li>事务参与者 participant</li>
 </ol>
@@ -428,37 +413,25 @@
 <p><a target="_blank" rel="noopener" href="http://thinkinjava.cn/2018/10/26/2018/2018-10-26-Raft%20%E9%85%8D%E7%BD%AE%E5%8F%98%E6%9B%B4%20Configuration%20changes/">Raft 配置变更 Configuration Changes</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/algorithm/alg-domain-distribute-x-raft.html">分布式算法-Raft算法</a></p>
 
+      
     </div>
 
     
     
     
-
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag"># 分布式</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2022/11/13/%E5%88%86%E5%B8%83%E5%BC%8F%E7%90%86%E8%AE%BA-%E4%B8%80/" rel="prev" title="分布式理论(一)">
-      <i class="fa fa-chevron-left"></i> 分布式理论(一)
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/11/15/RabbitMQ/" rel="next" title="RabbitMQ">
-      RabbitMQ <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
+        <div class="post-eof"></div>
       </footer>
-    
   </article>
   
   
   
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -510,7 +483,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E5%8D%8F%E8%AE%AE%EF%BC%882PC%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">两阶段协议（2PC）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E8%89%B2"><span class="nav-number">1.1.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%9C%A8%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">存在问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E9%98%B6%E6%AE%B5%E5%8D%8F%E8%AE%AE%EF%BC%883PC%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">三阶段协议（3PC）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CanCommit%E9%98%B6%E6%AE%B5"><span class="nav-number">2.1.</span> <span class="nav-text">CanCommit阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PreCommit%E9%98%B6%E6%AE%B5"><span class="nav-number">2.2.</span> <span class="nav-text">PreCommit阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DoCommit"><span class="nav-number">2.3.</span> <span class="nav-text">DoCommit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Paxos"><span class="nav-number">3.</span> <span class="nav-text">Paxos</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E8%89%B2-1"><span class="nav-number">3.1.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%88Prepare%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">阶段一（Prepare）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5%E4%BA%8C%EF%BC%88Accept%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">阶段二（Accept）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%89%EF%BC%88Learn%EF%BC%89"><span class="nav-number">3.4.</span> <span class="nav-text">阶段三（Learn）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Raft"><span class="nav-number">4.</span> <span class="nav-text">Raft</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E8%89%B2-2"><span class="nav-number">4.1.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E4%B8%BE-Leader-election"><span class="nav-number">4.2.</span> <span class="nav-text">选举 Leader election</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E5%90%8C%E6%AD%A5"><span class="nav-number">4.3.</span> <span class="nav-text">日志同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">4.4.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E7%BE%A4%E6%88%90%E5%91%98%E5%8F%98%E6%9B%B4"><span class="nav-number">4.5.</span> <span class="nav-text">集群成员变更</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
