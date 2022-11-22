@@ -195,7 +195,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-15 08:27:23" itemprop="dateModified" datetime="2022-11-15T08:27:23+08:00">2022-11-15</time>
+                <time title="修改时间：2022-11-18 11:35:10" itemprop="dateModified" datetime="2022-11-18T11:35:10+08:00">2022-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -353,7 +353,7 @@
 <li>拥有最新的已提交的log entry的Follower才有资格成为Leader。</li>
 <li>Leader不能提交别的任期的日志，只能通过提交自己当前任期的日志来间接提交之前任期的日志。</li>
 </ul>
-<p><img src="/..%5Cresources%5C%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%5Cv2-94ccf7c98d908bfbdf3ff86af0ce824f_r.jpg" alt="img"></p>
+<p><img src="/../resources/%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE/v2-94ccf7c98d908bfbdf3ff86af0ce824f_r.jpg" alt="img"></p>
 <ol>
 <li><p>在 (a) 中，S1 是领导者，部分的复制了索引位置 2 的日志条目。</p>
 </li>
@@ -370,10 +370,10 @@
 <p>如果将成员变更当成一般的一致性问题，直接向Leader发送成员变更请求，Leader复制成员变更日志，达成多数派之后提交，各服务器提交成员变更日志后从旧成员配置(Cold)切换到新成员配置(Cnew)。</p>
 <p>因为各个服务器提交成员变更日志的时刻可能不同，造成各个服务器从旧成员配置(Cold)切换到新成员配置(Cnew)的时刻不同。</p>
 <p>但是成员变更过程的某一时刻，可能出现在Cold和Cnew中同时存在两个不相交的多数派，进而可能选出两个Leader，形成不同的决议，破坏安全性。</p>
-<p><img src="/..%5Cresources%5C%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%5Calg-dst-raft-9-16684402623122.jpg" alt="img"></p>
+<p><img src="/../resources/%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE/alg-dst-raft-9-16684402623122.jpg" alt="img"></p>
 <p>由于成员变更的这一特殊性，成员变更不能当成一般的一致性问题去解决。</p>
 <p>为了解决这一问题，Raft提出了两阶段的成员变更方法。集群先从旧成员配置Cold切换到一个过渡成员配置，称为共同一致(joint consensus)，共同一致是旧成员配置Cold和新成员配置Cnew的组合Cold U Cnew，一旦共同一致Cold U Cnew被提交，系统再切换到新成员配置Cnew。</p>
-<p><img src="/..%5Cresources%5C%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%5Calg-dst-raft-10-16684402964214.jpg" alt="img"></p>
+<p><img src="/../resources/%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE/alg-dst-raft-10-16684402964214.jpg" alt="img"></p>
 <p>Raft两阶段成员变更过程如下:</p>
 <ul>
 <li>Leader收到成员变更请求从Cold切成Cnew；</li>
@@ -403,7 +403,7 @@
 <li>一次成员变更成功前不允许开始下一次成员变更，因此新任Leader在开始提供服务前要将自己本地保存的最新成员配置重新投票形成多数派确认。</li>
 <li>Leader只要开始同步新成员配置，即可开始使用新的成员配置进行日志同步。</li>
 </ul>
-<p><img src="/..%5Cresources%5C%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE%5C1240.png" alt="img"></p>
+<p><img src="/../resources/%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE/1240.png" alt="img"></p>
 <p>如图，使用两阶段不可能出现两个大多数的情况。</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35616810">分布式一致性之两阶段提交协议、三阶提交协议</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/algorithm/alg-domain-distribute-x-paxos.html">分布式算法 - Paxos算法</a></p>
@@ -430,7 +430,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/home/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/home/">1</a><span class="space">&hellip;</span><a class="page-number" href="/home/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/home/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/home/page/8/">8</a><a class="extend next" rel="next" href="/home/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/home/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/home/">1</a><span class="space">&hellip;</span><a class="page-number" href="/home/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/home/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/home/page/10/">10</a><a class="extend next" rel="next" href="/home/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -496,20 +496,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

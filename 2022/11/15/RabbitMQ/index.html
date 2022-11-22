@@ -29,17 +29,17 @@
 <meta property="og:site_name" content="开心的小曾">
 <meta property="og:description" content="原理RabbitMQ整体架构如图：  Producer生产者生产消息的一方 Exchange 交换机RabbitMQ中，消息不是直接发到队列中去，而是交给交换机，交换机在根据路由策略分配到队列中去。路由策略包含四种：direct(默认)、fanout、topic、headers. 每个队列绑定到交换机时会指定一个BindingKey。然后生产者发消息到交换机时也会指定消息RoutingKey。交换">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CRabbitMQ%5Cimage-20221115203700372.png">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CRabbitMQ%5Cwebp.webp">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CRabbitMQ%5C73843.jpg">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CRabbitMQ%5Cimage-20221116141249063.png">
+<meta property="og:image" content="http://example.com/resources/RabbitMQ/image-20221115203700372.png">
+<meta property="og:image" content="http://example.com/resources/RabbitMQ/webp.webp">
+<meta property="og:image" content="http://example.com/resources/RabbitMQ/73843.jpg">
+<meta property="og:image" content="http://example.com/resources/RabbitMQ/image-20221116141249063.png">
 <meta property="article:published_time" content="2022-11-15T12:06:35.000Z">
-<meta property="article:modified_time" content="2022-11-16T07:10:57.923Z">
+<meta property="article:modified_time" content="2022-11-18T02:24:17.491Z">
 <meta property="article:author" content="小曾">
 <meta property="article:tag" content="消息队列">
 <meta property="article:tag" content="RabbitMQ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/..%5Cresources%5CRabbitMQ%5Cimage-20221115203700372.png">
+<meta name="twitter:image" content="http://example.com/resources/RabbitMQ/image-20221115203700372.png">
 
 <link rel="canonical" href="http://example.com/2022/11/15/RabbitMQ/">
 
@@ -204,7 +204,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-16 15:10:57" itemprop="dateModified" datetime="2022-11-16T15:10:57+08:00">2022-11-16</time>
+                <time title="修改时间：2022-11-18 10:24:17" itemprop="dateModified" datetime="2022-11-18T10:24:17+08:00">2022-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,11 +239,11 @@
 
       
         <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>RabbitMQ整体架构如图：</p>
-<p><img src="/..%5Cresources%5CRabbitMQ%5Cimage-20221115203700372.png" alt="image-20221115203700372"></p>
+<p><img src="/../resources/RabbitMQ/image-20221115203700372.png" alt="image-20221115203700372"></p>
 <h3 id="Producer生产者"><a href="#Producer生产者" class="headerlink" title="Producer生产者"></a>Producer生产者</h3><p>生产消息的一方</p>
 <h3 id="Exchange-交换机"><a href="#Exchange-交换机" class="headerlink" title="Exchange 交换机"></a>Exchange 交换机</h3><p>RabbitMQ中，消息不是直接发到队列中去，而是交给交换机，交换机在根据路由策略分配到队列中去。路由策略包含四种：direct(默认)、fanout、topic、headers.</p>
 <p>每个队列绑定到交换机时会指定一个BindingKey。然后生产者发消息到交换机时也会指定消息RoutingKey。交换机会根据不同的策略来匹配RoutingKey进而转发到不同的队列。</p>
-<h4 id="direct"><a href="#direct" class="headerlink" title="direct"></a>direct</h4><p><img src="/..%5Cresources%5CRabbitMQ%5Cwebp.webp" alt="img"></p>
+<h4 id="direct"><a href="#direct" class="headerlink" title="direct"></a>direct</h4><p><img src="/../resources/RabbitMQ/webp.webp" alt="img"></p>
 <p>Direct回根据RoutingKey的完全匹配来转发到相应的队列。</p>
 <h4 id="fanout"><a href="#fanout" class="headerlink" title="fanout"></a>fanout</h4><p>fanout无视RoutingKey，直接发送消息到所有与它绑定的队列。</p>
 <h4 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h4><ul>
@@ -251,7 +251,7 @@
 <li>BindingKey 和 RoutingKey 一样也是点号“．”分隔的字符串；</li>
 <li>BindingKey 中可以存在两种特殊字符串“*”和“#”，用于做模糊匹配，其中“*”用于匹配一个单词，“#”用于匹配多个单词(可以是零个)。</li>
 </ul>
-<p><img src="/..%5Cresources%5CRabbitMQ%5C73843.jpg" alt="topic 类型交换器"></p>
+<p><img src="/../resources/RabbitMQ/73843.jpg" alt="topic 类型交换器"></p>
 <p>以上图为例：</p>
 <ul>
 <li>路由键为 “com.rabbitmq.client” 的消息会同时路由到 Queue1 和 Queue2;</li>
@@ -309,7 +309,7 @@
 
 <h3 id="延时队列"><a href="#延时队列" class="headerlink" title="延时队列"></a>延时队列</h3><p>可以通过死信队列来实现。</p>
 <p><strong>假如一条消息需要延迟 30 分钟执行，我们就设置这条消息的有效期为 30 分钟，同时为这条消息配置死信交换机和死信 <code>routing_key</code>，并且不为这个消息队列设置消费者，那么 30 分钟后，这条消息由于没有被消费者消费而进入死信队列，此时我们有一个消费者就在“蹲点”这个死信队列，消息一进入死信队列，就立马被消费了。</strong></p>
-<h3 id="消息发布可靠性"><a href="#消息发布可靠性" class="headerlink" title="消息发布可靠性"></a>消息发布可靠性</h3><p><img src="/..%5Cresources%5CRabbitMQ%5Cimage-20221116141249063.png" alt="image-20221116141249063"></p>
+<h3 id="消息发布可靠性"><a href="#消息发布可靠性" class="headerlink" title="消息发布可靠性"></a>消息发布可靠性</h3><p><img src="/../resources/RabbitMQ/image-20221116141249063.png" alt="image-20221116141249063"></p>
 <p>消息发送可靠性需要两个方面去保证：</p>
 <ul>
 <li>Publisher成功将消息发到Exchange</li>
@@ -481,20 +481,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

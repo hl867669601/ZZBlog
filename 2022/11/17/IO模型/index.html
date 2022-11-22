@@ -29,28 +29,28 @@
 <meta property="og:site_name" content="开心的小曾">
 <meta property="og:description" content="五大IO模型一次TCP通信的过程如图所示：  首先A应用要把发送的数据放到TCP缓冲区中、然后通过TCP&#x2F;IP协议发送到对方的TCP接受缓冲区。然后应用B再从缓冲区拿数据。 而应用间的数据通信是间断性的，当应用向TCP缓冲区发出读取请求时，针对IO模型的不同，操作系统会给出不同的操作。 名词解释：  阻塞&#x2F;非阻塞关注的是程序在等待调用结果（消息，返回值）时的状态。主要关注的是线">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-5311954c22d15ca91e47ab52168b7ada_b.jpg">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5C1492928416812_4.png">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5C1492929000361_5.png">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5C1492930243286_8.png">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-529734ac694c4da96ac78eeebd7deb6b_b.jpg">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5C1492929444818_6.png">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5C1492929553651_7.png">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-a985cdb6095e94c5eb71c7b9e1957da2_b.jpg">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-adf545de491e45398a0e4b5fb1ec4a98_720w.webp">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/v2-5311954c22d15ca91e47ab52168b7ada_b.jpg">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/1492928416812_4.png">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/1492929000361_5.png">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/1492930243286_8.png">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/v2-529734ac694c4da96ac78eeebd7deb6b_b.jpg">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/1492929444818_6.png">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/1492929553651_7.png">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/v2-a985cdb6095e94c5eb71c7b9e1957da2_b.jpg">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/v2-adf545de491e45398a0e4b5fb1ec4a98_720w.webp">
 <meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5C640.png">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-2ad2ec819e69e106d44704fab3c141b1_b.jpg">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-282ecfe51a18f00918f02f02bdf20950_b.jpg">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-e3b554661358b18b3f36cc17f0b0c8c1_b.jpg">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-16ff9ac786b16508711083ed44a8ff79_b.jpg">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-557b255dbca2fdd3a5a213cbee7df513_b.jpg">
-<meta property="og:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-dc405f1eb057217aee8820b6d3e340fd_b.jpg">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/v2-2ad2ec819e69e106d44704fab3c141b1_b.jpg">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/v2-282ecfe51a18f00918f02f02bdf20950_b.jpg">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/v2-e3b554661358b18b3f36cc17f0b0c8c1_b.jpg">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/v2-16ff9ac786b16508711083ed44a8ff79_b.jpg">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/v2-557b255dbca2fdd3a5a213cbee7df513_b.jpg">
+<meta property="og:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/v2-dc405f1eb057217aee8820b6d3e340fd_b.jpg">
 <meta property="article:published_time" content="2022-11-17T11:53:13.000Z">
-<meta property="article:modified_time" content="2022-11-18T02:18:42.399Z">
+<meta property="article:modified_time" content="2022-11-18T02:23:42.696Z">
 <meta property="article:author" content="小曾">
 <meta property="article:tag" content="IO">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-5311954c22d15ca91e47ab52168b7ada_b.jpg">
+<meta name="twitter:image" content="http://example.com/resources/IO%E6%A8%A1%E5%9E%8B/v2-5311954c22d15ca91e47ab52168b7ada_b.jpg">
 
 <link rel="canonical" href="http://example.com/2022/11/17/IO%E6%A8%A1%E5%9E%8B/">
 
@@ -215,7 +215,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-18 10:18:42" itemprop="dateModified" datetime="2022-11-18T10:18:42+08:00">2022-11-18</time>
+                <time title="修改时间：2022-11-18 10:23:42" itemprop="dateModified" datetime="2022-11-18T10:23:42+08:00">2022-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,7 +246,7 @@
 
       
         <h1 id="五大IO模型"><a href="#五大IO模型" class="headerlink" title="五大IO模型"></a>五大IO模型</h1><p>一次TCP通信的过程如图所示：</p>
-<p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-5311954c22d15ca91e47ab52168b7ada_b.jpg" alt="img"></p>
+<p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/v2-5311954c22d15ca91e47ab52168b7ada_b.jpg" alt="img"></p>
 <p>首先A应用要把发送的数据放到TCP缓冲区中、然后通过TCP&#x2F;IP协议发送到对方的TCP接受缓冲区。然后应用B再从缓冲区拿数据。</p>
 <p>而应用间的数据通信是间断性的，当应用向TCP缓冲区发出读取请求时，针对IO模型的不同，操作系统会给出不同的操作。</p>
 <p>名词解释：</p>
@@ -260,14 +260,14 @@
 </ul>
 <p><strong>同步</strong>：所谓同步，就是在发出一个调用时，在没有得到结果之前， 该调用就不返回。</p>
 <p><strong>异步</strong>：则是相反，调用在发出之后，这个调用就直接返回了，所以没有返回结果</p>
-<h2 id="阻塞式IO"><a href="#阻塞式IO" class="headerlink" title="阻塞式IO"></a>阻塞式IO</h2><p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5C1492928416812_4.png" alt="img"></p>
+<h2 id="阻塞式IO"><a href="#阻塞式IO" class="headerlink" title="阻塞式IO"></a>阻塞式IO</h2><p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/1492928416812_4.png" alt="img"></p>
 <p>当，系统会等待数据到达，并把数据复制到用户内存空间时才返回。用户进程从发起请求到内核返回数据全程阻塞。</p>
 <ol>
 <li>应用进程发起recvfrom读取数据（应用阻塞）。</li>
 <li>将数据从内核复制到应用空间。</li>
 <li>返回。</li>
 </ol>
-<h2 id="非阻塞IO"><a href="#非阻塞IO" class="headerlink" title="非阻塞IO"></a>非阻塞IO</h2><p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5C1492929000361_5.png" alt="img"></p>
+<h2 id="非阻塞IO"><a href="#非阻塞IO" class="headerlink" title="非阻塞IO"></a>非阻塞IO</h2><p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/1492929000361_5.png" alt="img"></p>
 <p>如果缓冲区没有数据：</p>
 <ol>
 <li>应用进程向内核发起recvfrom读取数据（不阻塞）。</li>
@@ -279,7 +279,7 @@
 <li>将数据从内核空间拷贝到用户空间</li>
 <li>返回。</li>
 </ol>
-<h2 id="异步I-x2F-O"><a href="#异步I-x2F-O" class="headerlink" title="异步I&#x2F;O"></a>异步I&#x2F;O</h2><p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5C1492930243286_8.png" alt="img"></p>
+<h2 id="异步I-x2F-O"><a href="#异步I-x2F-O" class="headerlink" title="异步I&#x2F;O"></a>异步I&#x2F;O</h2><p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/1492930243286_8.png" alt="img"></p>
 <ol>
 <li>发起aio_read。</li>
 <li>立即返回，线程可以执行别的。</li>
@@ -289,15 +289,15 @@
 <li>一个<strong>非阻塞I&#x2F;O 系统调用 read()</strong> 操作立即返回的是任何可以立即拿到的数据， 可以是完整的结果， 也可以是不完整的结果， 还可以是一个空值。</li>
 <li>而<strong>异步I&#x2F;O系统调用</strong> read（）结果必须是完整的， 但是这个操作完成的通知可以延迟到将来的一个时间点。</li>
 </ul>
-<h2 id="I-x2F-O复用"><a href="#I-x2F-O复用" class="headerlink" title="I&#x2F;O复用"></a>I&#x2F;O复用</h2><p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-529734ac694c4da96ac78eeebd7deb6b_b.jpg" alt="img"></p>
+<h2 id="I-x2F-O复用"><a href="#I-x2F-O复用" class="headerlink" title="I&#x2F;O复用"></a>I&#x2F;O复用</h2><p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/v2-529734ac694c4da96ac78eeebd7deb6b_b.jpg" alt="img"></p>
 <p>如果并发环境下，每个应用都要及时读取到数据，这些线程就会不断的发送recvfrom请求，就会导致大量资源浪费。</p>
 <p>然后就出现了一种只用一个线程去检查每个IO请求的数据状态询问。然后再对数据准备就绪的IO连接分配线程去读取数据。</p>
-<p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5C1492929444818_6.png" alt="img"></p>
+<p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/1492929444818_6.png" alt="img"></p>
 <p><strong>总结：</strong>复用IO的基本思路就是通过slect或poll、epoll 来监控多fd ，来达到不必为每个fd创建一个对应的监控线程，从而减少线程资源创建的目的。</p>
 <h2 id="信号驱动I-x2F-O"><a href="#信号驱动I-x2F-O" class="headerlink" title="信号驱动I&#x2F;O"></a>信号驱动I&#x2F;O</h2><p>复用IO模型解决了一个线程可以监控多个fd的问题，但是select是采用轮询的方式来监控多个fd的，通过不断的轮询fd的可读状态来知道是否就可读的数据，但这样的不断轮询也会导致性能浪费。</p>
-<p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5C1492929553651_7.png" alt="img"></p>
+<p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/1492929553651_7.png" alt="img"></p>
 <p>应用进程使用 sigaction 系统调用，内核立即返回，应用进程可以继续执行，也就是说等待数据阶段应用进程是非阻塞的。内核在数据到达时向应用进程发送 SIGIO 信号，应用进程收到之后在信号处理程序中调用 recvfrom 将数据从内核复制到应用进程中。</p>
-<h1 id="SELECT-POLL-EPOLL"><a href="#SELECT-POLL-EPOLL" class="headerlink" title="SELECT POLL EPOLL"></a>SELECT POLL EPOLL</h1><h2 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h2><p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-a985cdb6095e94c5eb71c7b9e1957da2_b.jpg" alt="img"></p>
+<h1 id="SELECT-POLL-EPOLL"><a href="#SELECT-POLL-EPOLL" class="headerlink" title="SELECT POLL EPOLL"></a>SELECT POLL EPOLL</h1><h2 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h2><p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/v2-a985cdb6095e94c5eb71c7b9e1957da2_b.jpg" alt="img"></p>
 <ol>
 <li><p>使用copy_from_user从用户空间拷贝fd_set到内核空间</p>
 </li>
@@ -319,7 +319,7 @@
 <p>有两种模式：</p>
 <p>LT(水平触发): 默认，只要该fd还有数据可读，每次epoll_wait都会返回它的事件。</p>
 <p>ET(边缘触发): 只会返回一次，除非产生第二次读写事件。</p>
-<p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-adf545de491e45398a0e4b5fb1ec4a98_720w.webp" alt="img"></p>
+<p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/v2-adf545de491e45398a0e4b5fb1ec4a98_720w.webp" alt="img"></p>
 <ol>
 <li>epoll_create：</li>
 </ol>
@@ -335,7 +335,7 @@
 </li>
 </ol>
 <h1 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h1><h2 id="DMA"><a href="#DMA" class="headerlink" title="DMA"></a>DMA</h2><p>传统IO：</p>
-<p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-2ad2ec819e69e106d44704fab3c141b1_b.jpg" alt="img"></p>
+<p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/v2-2ad2ec819e69e106d44704fab3c141b1_b.jpg" alt="img"></p>
 <ol>
 <li><p>CPU发出指令给需要数据传输的磁盘控制器，然后返回</p>
 </li>
@@ -345,7 +345,7 @@
 </li>
 </ol>
 <p>DMAIO:</p>
-<p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-282ecfe51a18f00918f02f02bdf20950_b.jpg" alt="img"></p>
+<p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/v2-282ecfe51a18f00918f02f02bdf20950_b.jpg" alt="img"></p>
 <ol>
 <li><p>cpu发送IO请求到DMA.</p>
 </li>
@@ -355,7 +355,7 @@
 </li>
 </ol>
 <h2 id="文件传输"><a href="#文件传输" class="headerlink" title="文件传输"></a>文件传输</h2><h3 id="传统文件传输"><a href="#传统文件传输" class="headerlink" title="传统文件传输"></a>传统文件传输</h3><p>read+write</p>
-<p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-e3b554661358b18b3f36cc17f0b0c8c1_b.jpg" alt="img"></p>
+<p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/v2-e3b554661358b18b3f36cc17f0b0c8c1_b.jpg" alt="img"></p>
 <p>4次拷贝：</p>
 <ol>
 <li><p>第一次拷贝，把磁盘的数据拷贝到内核缓冲区（DMA）。</p>
@@ -378,14 +378,14 @@
 <li><p>内核发送完后返回（从内核态切换到用户态）</p>
 </li>
 </ol>
-<h3 id="mmap-write"><a href="#mmap-write" class="headerlink" title="mmap+write"></a>mmap+write</h3><p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-16ff9ac786b16508711083ed44a8ff79_b.jpg" alt="img"></p>
+<h3 id="mmap-write"><a href="#mmap-write" class="headerlink" title="mmap+write"></a>mmap+write</h3><p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/v2-16ff9ac786b16508711083ed44a8ff79_b.jpg" alt="img"></p>
 <ol>
 <li>第一次拷贝，应用进程调用mmap()后，DMA会把磁盘数据拷贝到内核缓冲区，此时内核和用户共享这个缓冲区。</li>
 <li>第二次拷贝，用户调用write, cpu将缓冲区的数据拷贝到socket缓冲区</li>
 <li>第三次拷贝，DMA将socket缓冲区数据拷贝到网卡。</li>
 </ol>
 <p>mmap+write减少了一次数据拷贝，但还是4次上下文切换(因为还是两次系统调用)。</p>
-<h3 id="sendfile"><a href="#sendfile" class="headerlink" title="sendfile"></a>sendfile</h3><p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-557b255dbca2fdd3a5a213cbee7df513_b.jpg" alt="img"></p>
+<h3 id="sendfile"><a href="#sendfile" class="headerlink" title="sendfile"></a>sendfile</h3><p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/v2-557b255dbca2fdd3a5a213cbee7df513_b.jpg" alt="img"></p>
 <ol>
 <li><p>第一次拷贝，DMA直接将磁盘数据拷贝到内核缓冲区</p>
 </li>
@@ -396,7 +396,7 @@
 </li>
 </ol>
 <p>如果支持SG-DMA的话可以直接将内核缓存区中的数据拷贝到网卡缓冲区</p>
-<p><img src="/..%5Cresources%5CIO%E6%A8%A1%E5%9E%8B%5Cv2-dc405f1eb057217aee8820b6d3e340fd_b.jpg" alt="img"></p>
+<p><img src="/../resources/IO%E6%A8%A1%E5%9E%8B/v2-dc405f1eb057217aee8820b6d3e340fd_b.jpg" alt="img"></p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/501198241"><em>同步</em>&#x2F;异步，<em>阻塞</em>&#x2F;非<em>阻塞</em>概念深度解析</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115912936">100%弄明白5种IO模型</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/java/io/java-io-model.html">IO 模型 - Unix IO 模型</a></p>
@@ -425,7 +425,10 @@
     <a href="/2022/11/17/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99/" rel="prev" title="开发六大原则">
       <i class="fa fa-chevron-left"></i> 开发六大原则
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/18/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" rel="next" title="并发编程">
+      并发编程 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -498,20 +501,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
