@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Java.IO  File12345678910111213141516171819202122232425262728293031323334&#x2F;&#x2F; public static void main(String[] args) &amp;#123;    &#x2F;&#x2F; File可以表示文件或目录信息    File file &#x3D; new File(&quot;D:\\Blog&quot;);    &#x2F;&#x2F; 递归输出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaIO">
+<meta property="og:url" content="http://example.com/2022/11/26/JavaIO/index.html">
+<meta property="og:site_name" content="开心的小曾">
+<meta property="og:description" content="Java.IO  File12345678910111213141516171819202122232425262728293031323334&#x2F;&#x2F; public static void main(String[] args) &amp;#123;    &#x2F;&#x2F; File可以表示文件或目录信息    File file &#x3D; new File(&quot;D:\\Blog&quot;);    &#x2F;&#x2F; 递归输出">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/..%5Cresources%5CJavaIO%5Cjava-io-category-1-1.png">
+<meta property="og:image" content="http://example.com/..%5Cresources%5CJavaIO%5Cjava-io-category-2-1.png">
+<meta property="og:image" content="http://example.com/..%5Cresources%5CJavaIO%5C1bea398f-17a7-4f67-a90b-9e2d243eaa9a.png">
+<meta property="og:image" content="http://example.com/..%5Cresources%5CJavaIO%5C80804f52-8815-4096-b506-48eef3eed5c6.png">
+<meta property="og:image" content="http://example.com/..%5Cresources%5CJavaIO%5Cimage-20221126220803622.png">
+<meta property="og:image" content="http://example.com/..%5Cresources%5CJavaIO%5C0022.png">
+<meta property="article:published_time" content="2022-11-26T08:42:41.000Z">
+<meta property="article:modified_time" content="2022-11-27T12:35:23.095Z">
+<meta property="article:author" content="小曾">
+<meta property="article:tag" content="IO编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/..%5Cresources%5CJavaIO%5Cjava-io-category-1-1.png">
+
+<link rel="canonical" href="http://example.com/2022/11/26/JavaIO/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JavaIO | 开心的小曾</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">开心的小曾</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/home/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/26/JavaIO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小曾">
+      <meta itemprop="description" content="长得丑就要多读书">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="开心的小曾">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaIO
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-26 16:42:41" itemprop="dateCreated datePublished" datetime="2022-11-26T16:42:41+08:00">2022-11-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-27 20:35:23" itemprop="dateModified" datetime="2022-11-27T20:35:23+08:00">2022-11-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IO%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">IO编程</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Java-IO"><a href="#Java-IO" class="headerlink" title="Java.IO"></a>Java.IO</h1><p><img src="/..%5Cresources%5CJavaIO%5Cjava-io-category-1-1.png" alt="img"></p>
+<p><img src="/..%5Cresources%5CJavaIO%5Cjava-io-category-2-1.png" alt="img"></p>
+<h2 id="File"><a href="#File" class="headerlink" title="File"></a>File</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="comment">// File可以表示文件或目录信息</span></span><br><span class="line">    <span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;D:\\Blog&quot;</span>);</span><br><span class="line">    <span class="comment">// 递归输出文件</span></span><br><span class="line">    printDir(file);</span><br><span class="line">   </span><br><span class="line">    <span class="comment">// 创建目录</span></span><br><span class="line">    <span class="comment">// 判断文件或目录是否存在</span></span><br><span class="line">    <span class="keyword">if</span> (!testNewDir.exists())&#123;</span><br><span class="line">       <span class="comment">// mkdir当上级目录不存在是，创建子级目录会失败</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">A</span> <span class="operator">=</span> testNewDir.mkdir();</span><br><span class="line">        System.out.println( <span class="string">&quot;创建&quot;</span>+(A?<span class="string">&quot;成功&quot;</span>:<span class="string">&quot;失败&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!testNewDir.exists())&#123;</span><br><span class="line">        <span class="comment">// mkdirs当上级目录不存在时，会把上级目录页一起创建</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">A</span> <span class="operator">=</span> testNewDir.mkdirs();</span><br><span class="line">        System.out.println( <span class="string">&quot;创建&quot;</span>+(A?<span class="string">&quot;成功&quot;</span>:<span class="string">&quot;失败&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">	<span class="comment">// 递归输出所有文件</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printDir</span><span class="params">(File file)</span>&#123;</span><br><span class="line">    <span class="comment">// 获取file下所有的文件或目录</span></span><br><span class="line">    File[] files = file.listFiles();</span><br><span class="line">    <span class="keyword">for</span> (File f:files)&#123;</span><br><span class="line">        <span class="comment">// 判断f是否是目录</span></span><br><span class="line">        <span class="keyword">if</span> (f.isDirectory())&#123;</span><br><span class="line">            printDir(f);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// getAbsoluteFile返回的也是个File对象但重写了toString方法</span></span><br><span class="line">            System.out.println(f.getAbsoluteFile());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>File可以表示文件或目录信息，主要用的API: listFiles()、isDirectory()、exists()、mkdir()等。它们都不需要捕获异常。</p>
+<h2 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h2><p>InputStream的常用API有：</p>
+<ul>
+<li>read(): 返回输入流中下一个字节的数据。返回的值介于 0 到 255 之间。如果未读取任何字节，则代码返回 <code>-1</code> ，表示文件结束。</li>
+<li>read(byte[] b):  从输入流中读取一些字节存储到数组 <code>b</code> 中。如果数组 <code>b</code> 的长度为零，则不读取。如果没有可用字节读取，返回 <code>-1</code>。如果有可用字节读取，则最多读取的字节数最多等于 <code>b.length</code> ， 返回读取的字节数。这个方法等价于 <code>read(b, 0, b.length)</code>。</li>
+<li><code>read(byte b[], int off, int len)</code> ：在<code>read(byte b[ ])</code> 方法的基础上增加了 <code>off</code> 参数（偏移量）和 <code>len</code> 参数（要读取的最大字节数）。</li>
+<li><code>skip(long n)</code> ：忽略输入流中的 n 个字节 ,返回实际忽略的字节数。</li>
+<li><code>available()</code> ：返回输入流中可以读取的字节数。</li>
+<li><code>close()</code> ：关闭输入流释放相关的系统资源。</li>
+</ul>
+<p>Jdk9后又增加了:</p>
+<ul>
+<li><code>readAllBytes()</code> ：读取输入流中的所有字节，返回字节数组。</li>
+<li><code>readNBytes(byte[] b, int off, int len)</code> ：阻塞直到读取 <code>len</code> 个字节。</li>
+<li><code>transferTo(OutputStream out)</code> ： 将所有字节从一个输入流传递到一个输出流。</li>
+</ul>
+<h2 id="FileInputStream"><a href="#FileInputStream" class="headerlink" title="FileInputStream"></a>FileInputStream</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// FileInputStream.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">FileInputStream</span><span class="params">(String name)</span> <span class="keyword">throws</span> FileNotFoundException &#123;</span><br><span class="line">    <span class="built_in">this</span>(name != <span class="literal">null</span> ? <span class="keyword">new</span> <span class="title class_">File</span>(name) : <span class="literal">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>FileInputStream需要传一个文件路径或者文件对象。会抛出FileNotFoundExecption</p>
+<p>FileInputStream读取文件:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 创建FileInputStream</span></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;test.txt&quot;</span>);</span><br><span class="line">		<span class="comment">// 接收数组</span></span><br><span class="line">        <span class="type">byte</span>[] b = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="comment">// 跳过字节数</span></span><br><span class="line">        in.skip(<span class="number">5</span>);</span><br><span class="line">        <span class="comment">// 循环读</span></span><br><span class="line">        <span class="keyword">while</span> ((in.read(b))!=-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="comment">// 这里字节数组可以被编码成字符串，优先用UTF-8</span></span><br><span class="line">            System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(b));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (FileNotFoundException e)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;文件不存在&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="BufferInputStream"><a href="#BufferInputStream" class="headerlink" title="BufferInputStream"></a>BufferInputStream</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// BufferInputStream.java</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// BufferInputStream是在InputStream的基础上，内置了一个byte数组。</span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">BufferedInputStream</span><span class="params">(InputStream in, <span class="type">int</span> size)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(in);</span><br><span class="line">    <span class="keyword">if</span> (size &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Buffer size &lt;= 0&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    buf = <span class="keyword">new</span> <span class="title class_">byte</span>[size];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 其中的read方法，首先会调用fill方法自己去读文件数据到内置的数组，然后返回独到的第一个字节以int返回。其中pos是你读到的位置初始为0，count是内置数组总共读了多少字节。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="type">int</span> <span class="title function_">read</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="keyword">if</span> (pos &gt;= count) &#123;</span><br><span class="line">        <span class="comment">// 读文件</span></span><br><span class="line">        fill();</span><br><span class="line">        <span class="keyword">if</span> (pos &gt;= count)</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> getBufIfOpen()[pos++] &amp; <span class="number">0xff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">fill</span><span class="params">()</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">     <span class="comment">// 返回内置的数组</span></span><br><span class="line">     <span class="type">byte</span>[] buffer = getBufIfOpen();</span><br><span class="line">     <span class="keyword">if</span> (markpos &lt; <span class="number">0</span>)</span><br><span class="line">         pos = <span class="number">0</span>;            <span class="comment">/* no mark: throw away the buffer */</span></span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">if</span> (pos &gt;= buffer.length)  <span class="comment">/* no room left in buffer */</span></span><br><span class="line">         <span class="keyword">if</span> (markpos &gt; <span class="number">0</span>) &#123;  <span class="comment">/* can throw away early part of the buffer */</span></span><br><span class="line">             <span class="type">int</span> <span class="variable">sz</span> <span class="operator">=</span> pos - markpos;</span><br><span class="line">             System.arraycopy(buffer, markpos, buffer, <span class="number">0</span>, sz);</span><br><span class="line">             pos = sz;</span><br><span class="line">             markpos = <span class="number">0</span>;</span><br><span class="line">         &#125; <span class="keyword">else</span> <span class="keyword">if</span> (buffer.length &gt;= marklimit) &#123;</span><br><span class="line">             markpos = -<span class="number">1</span>;   <span class="comment">/* buffer got too big, invalidate mark */</span></span><br><span class="line">             pos = <span class="number">0</span>;        <span class="comment">/* drop buffer contents */</span></span><br><span class="line">         &#125; <span class="keyword">else</span> <span class="keyword">if</span> (buffer.length &gt;= MAX_BUFFER_SIZE) &#123;</span><br><span class="line">             <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">OutOfMemoryError</span>(<span class="string">&quot;Required array size too large&quot;</span>);</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;            <span class="comment">/* grow buffer */</span></span><br><span class="line">             <span class="type">int</span> <span class="variable">nsz</span> <span class="operator">=</span> (pos &lt;= MAX_BUFFER_SIZE - pos) ?</span><br><span class="line">                 pos * <span class="number">2</span> : MAX_BUFFER_SIZE;</span><br><span class="line">             <span class="keyword">if</span> (nsz &gt; marklimit)</span><br><span class="line">                 nsz = marklimit;</span><br><span class="line">             <span class="type">byte</span> nbuf[] = <span class="keyword">new</span> <span class="title class_">byte</span>[nsz];</span><br><span class="line">             System.arraycopy(buffer, <span class="number">0</span>, nbuf, <span class="number">0</span>, pos);</span><br><span class="line">             <span class="keyword">if</span> (!bufUpdater.compareAndSet(<span class="built_in">this</span>, buffer, nbuf)) &#123;</span><br><span class="line">                 <span class="comment">// Can&#x27;t replace buf if there was an async close.</span></span><br><span class="line">                 <span class="comment">// Note: This would need to be changed if fill()</span></span><br><span class="line">                 <span class="comment">// is ever made accessible to multiple threads.</span></span><br><span class="line">                 <span class="comment">// But for now, the only way CAS can fail is via close.</span></span><br><span class="line">                 <span class="comment">// assert buf == null;</span></span><br><span class="line">                 <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IOException</span>(<span class="string">&quot;Stream closed&quot;</span>);</span><br><span class="line">             &#125;</span><br><span class="line">             buffer = nbuf;</span><br><span class="line">         &#125;</span><br><span class="line">     count = pos;</span><br><span class="line">     <span class="comment">// 这里就是调用构造时，传入的inputStream去读数据到内置数组中。bufferInputStream继承自filterInputStream，使用了装饰器模式对inputStream增加了缓冲区的功能。</span></span><br><span class="line">     <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> getInIfOpen().read(buffer, pos, buffer.length - pos);</span><br><span class="line">     <span class="keyword">if</span> (n &gt; <span class="number">0</span>)</span><br><span class="line">         count = n + pos;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>BufferInputStream读取数据：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// &quot;xiaozeng&quot;</span></span><br><span class="line">        <span class="type">FileInputStream</span> <span class="variable">fileInputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;test.txt&quot;</span>);</span><br><span class="line">        <span class="type">BufferedInputStream</span> <span class="variable">bufferedInputStream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(fileInputStream);</span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> bufferedInputStream.read();</span><br><span class="line">        <span class="comment">// &quot;x&quot;</span></span><br><span class="line">        System.out.println((<span class="type">char</span>) a);</span><br><span class="line">        <span class="type">byte</span>[] bytes = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        bufferedInputStream.read(bytes);</span><br><span class="line">        <span class="comment">// &quot;iaozengs&quot;</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(bytes));</span><br><span class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Java-NIO"><a href="#Java-NIO" class="headerlink" title="Java.NIO"></a>Java.NIO</h1><p>基础概念：</p>
+<ul>
+<li><p>I&#x2F;O: 以流方式处理数据，一次处理一个字节数据</p>
+</li>
+<li><p>NIO: 以块方式处理数据，一次处理一个数据块，块被读入内存之后就是一个byte[]</p>
+</li>
+<li><p>Channel :  Channel 是对原 I&#x2F;O 包中的流的模拟，可以通过它读取和写入数据。</p>
+</li>
+<li><p>缓冲区: 向通道发送或读取数据，都需要先经过缓冲区。</p>
+</li>
+</ul>
+<h2 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h2><p>buffer里有三个变量：</p>
+<p>capacity：容量(不变)</p>
+<p>limit: 可读写到的位置</p>
+<p>position: 当前读写位置</p>
+<h3 id="写模式："><a href="#写模式：" class="headerlink" title="写模式："></a>写模式：</h3><p><img src="/..%5Cresources%5CJavaIO%5C1bea398f-17a7-4f67-a90b-9e2d243eaa9a.png" alt="image"></p>
+<p>初始时position在0，limit在capacit位置</p>
+<p><img src="/..%5Cresources%5CJavaIO%5C80804f52-8815-4096-b506-48eef3eed5c6.png" alt="image"></p>
+<p>写多个字节后，position变成下一个要写的位置，limit不变。</p>
+<h3 id="读模式："><a href="#读模式：" class="headerlink" title="读模式："></a>读模式：</h3><p>读之前要调用flip()</p>
+<p>这时position会变到0位置，limit会变到原Postion位置，这样他们之间就是可以读的数据了。</p>
+<h3 id="调用clear方法"><a href="#调用clear方法" class="headerlink" title="调用clear方法"></a>调用clear方法</h3><p>清空缓存区，postion就会回到0，limit回到最后。</p>
+<p><img src="/..%5Cresources%5CJavaIO%5Cimage-20221126220803622.png" alt="image-20221126220803622"></p>
+<h2 id="Compact"><a href="#Compact" class="headerlink" title="Compact"></a>Compact</h2><p>compact 方法，是把未读完的部分向前压缩，然后切换至写模式</p>
+<p><img src="/..%5Cresources%5CJavaIO%5C0022.png"></p>
+<h3 id="ByteBuffer"><a href="#ByteBuffer" class="headerlink" title="ByteBuffer"></a>ByteBuffer</h3><p>常用语句：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建ByteBUffer</span></span><br><span class="line"><span class="type">Bytebuffer</span> <span class="variable">buf</span> <span class="operator">=</span> ByteBuffer.allocate(<span class="number">16</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// channel向buffer写数据</span></span><br><span class="line"><span class="type">int</span> <span class="variable">readBytes</span> <span class="operator">=</span> channel.read(buf);</span><br><span class="line"><span class="comment">// 直接向buffer写数据</span></span><br><span class="line">buf.put((<span class="type">byte</span>)<span class="number">127</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// buffer读数据到channel</span></span><br><span class="line"><span class="type">int</span> <span class="variable">writeBytes</span> <span class="operator">=</span> channel.write(buf);</span><br><span class="line"><span class="comment">// 直接从buffer读数据</span></span><br><span class="line"><span class="type">byte</span> <span class="variable">b</span> <span class="operator">=</span> buf.get();</span><br></pre></td></tr></table></figure>
+
+<h4 id="mark-和-reset"><a href="#mark-和-reset" class="headerlink" title="mark 和 reset"></a>mark 和 reset</h4><p>mark 是在读取时，做一个标记，即使 position 改变，只要调用 reset 就能回到 mark 的位置</p>
+<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>用channel实现零拷贝复制：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        <span class="type">FileChannel</span> <span class="variable">from</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;data.txt&quot;</span>).getChannel();</span><br><span class="line">        <span class="type">FileChannel</span> <span class="variable">to</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;to.txt&quot;</span>).getChannel();</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="comment">// 效率高，底层会利用操作系统的零拷贝进行优化</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">size</span> <span class="operator">=</span> from.size();</span><br><span class="line">        <span class="comment">// left 变量代表还剩余多少字节</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">long</span> <span class="variable">left</span> <span class="operator">=</span> size; left &gt; <span class="number">0</span>; ) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;position:&quot;</span> + (size - left) + <span class="string">&quot; left:&quot;</span> + left);</span><br><span class="line">            <span class="comment">// transferTo用的是底层用了sendFile零拷贝</span></span><br><span class="line">            left -= from.transferTo((size - left), left, to);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>mmap零拷贝：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 获取文件，Paths.get返回一个Path对象，代表一个路径，类似file。StandardOpenOption.READ表示镀膜室</span></span><br><span class="line">        <span class="type">FileChannel</span> <span class="variable">readChannel</span> <span class="operator">=</span> FileChannel.open(Paths.get(<span class="string">&quot;C://test/jay.txt&quot;</span>), StandardOpenOption.READ);</span><br><span class="line">        <span class="type">MappedByteBuffer</span> <span class="variable">data</span> <span class="operator">=</span> readChannel.map(FileChannel.MapMode.READ_ONLY, <span class="number">0</span>, readChannel.size());</span><br><span class="line">        <span class="type">FileChannel</span> <span class="variable">writeChannel</span> <span class="operator">=</span> FileChannel.open(Paths.get(<span class="string">&quot;E://test1/siting.txt&quot;</span>),StandardOpenOption.WRITE, StandardOpenOption.CREATE);</span><br><span class="line">        <span class="comment">//数据传输</span></span><br><span class="line">        writeChannel.write(data);</span><br><span class="line">        readChannel.close();</span><br><span class="line">        writeChannel.close();</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">        System.out.println(e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="阻塞模式"><a href="#阻塞模式" class="headerlink" title="阻塞模式"></a>阻塞模式</h2><p>简单的服务器与客户端</p>
+<p>server</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">ServerSocketChannel</span> <span class="variable">serverSocketChannel</span> <span class="operator">=</span> ServerSocketChannel.open().bind(<span class="keyword">new</span> <span class="title class_">InetSocketAddress</span>(<span class="number">8080</span>));</span><br><span class="line">    List&lt;SocketChannel&gt; socketChannels = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="comment">// 这里是阻塞的</span></span><br><span class="line">        <span class="type">SocketChannel</span> <span class="variable">socketChannel</span> <span class="operator">=</span> serverSocketChannel.accept();</span><br><span class="line">        socketChannels.add(socketChannel);</span><br><span class="line">        System.out.println(<span class="string">&quot;连接完成&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (SocketChannel sc: socketChannels)&#123;</span><br><span class="line">            <span class="type">ByteBuffer</span> <span class="variable">byteBuffer</span> <span class="operator">=</span> ByteBuffer.allocate(<span class="number">1024</span>);</span><br><span class="line">            <span class="comment">// 这里是阻塞的</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> sc.read(byteBuffer);</span><br><span class="line">            System.out.println(<span class="string">&quot;i=&quot;</span>+i);</span><br><span class="line">            byteBuffer.flip();</span><br><span class="line">            System.out.println(Charset.defaultCharset().decode(byteBuffer));</span><br><span class="line">            byteBuffer.clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>client</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">SocketChannel</span> <span class="variable">sc</span> <span class="operator">=</span> SocketChannel.open();</span><br><span class="line">        sc.connect(<span class="keyword">new</span> <span class="title class_">InetSocketAddress</span>(<span class="string">&quot;localhost&quot;</span>,<span class="number">8080</span>));</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> sc.write(Charset.defaultCharset().encode(<span class="string">&quot;hello world!&quot;</span>));</span><br><span class="line">        sc.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="NIO模式"><a href="#NIO模式" class="headerlink" title="NIO模式"></a>NIO模式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">ServerSocketChannel</span> <span class="variable">serverSocketChannel</span> <span class="operator">=</span> ServerSocketChannel.open();</span><br><span class="line">    serverSocketChannel.bind(<span class="keyword">new</span> <span class="title class_">InetSocketAddress</span>(<span class="number">8080</span>));</span><br><span class="line">    <span class="comment">// 设置成非阻塞</span></span><br><span class="line">    serverSocketChannel.configureBlocking(<span class="literal">false</span>);</span><br><span class="line">    <span class="comment">// 开启选择器</span></span><br><span class="line">    <span class="type">Selector</span> <span class="variable">selector</span> <span class="operator">=</span> Selector.open();</span><br><span class="line">    <span class="comment">// 绑定Accept事件</span></span><br><span class="line">    serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="type">SocketChannel</span> <span class="variable">sc</span>  <span class="operator">=</span> serverSocketChannel.accept();</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span>  <span class="operator">=</span> selector.select();</span><br><span class="line">        System.out.println(<span class="string">&quot;count:&quot;</span>+count);</span><br><span class="line">        Set&lt;SelectionKey&gt; keySet = selector.selectedKeys();</span><br><span class="line"></span><br><span class="line">        Iterator&lt;SelectionKey&gt; iter = keySet.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iter.hasNext())&#123;</span><br><span class="line">            <span class="type">SelectionKey</span> <span class="variable">selectionKey</span> <span class="operator">=</span> iter.next();</span><br><span class="line">            <span class="keyword">if</span> (selectionKey.isAcceptable())&#123;</span><br><span class="line">                <span class="type">ServerSocketChannel</span> <span class="variable">serverSocketChannel1</span> <span class="operator">=</span> (ServerSocketChannel)selectionKey.channel();</span><br><span class="line">                <span class="type">SocketChannel</span> <span class="variable">socketChannel</span> <span class="operator">=</span> serverSocketChannel1.accept();</span><br><span class="line">                <span class="comment">// 设置非阻塞</span></span><br><span class="line">                socketChannel.configureBlocking(<span class="literal">false</span>);</span><br><span class="line">                <span class="comment">// 监听可读事件</span></span><br><span class="line">                socketChannel.register(selector,SelectionKey.OP_READ);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (selectionKey.isReadable())&#123;</span><br><span class="line">                <span class="comment">// 获取绑定key的channel</span></span><br><span class="line">                <span class="type">SocketChannel</span> <span class="variable">socketChannel</span> <span class="operator">=</span> (SocketChannel) selectionKey.channel();</span><br><span class="line">                <span class="type">ByteBuffer</span> <span class="variable">byteBuffer</span> <span class="operator">=</span> ByteBuffer.allocate(<span class="number">18</span>);</span><br><span class="line">                <span class="comment">// 读</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">read</span> <span class="operator">=</span> socketChannel.read(byteBuffer);</span><br><span class="line">                <span class="keyword">if</span> (read==-<span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="type">Channel</span> <span class="variable">c</span> <span class="operator">=</span> selectionKey.channel();</span><br><span class="line">                    <span class="comment">// 读不出来就关。不然下次还会获取到。</span></span><br><span class="line">                    c.close();</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    byteBuffer.flip();</span><br><span class="line">                    System.out.println(Charset.defaultCharset().decode(byteBuffer));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 处理完后，要将key删除，否则下一次循环还会拿到key</span></span><br><span class="line">            iter.remove();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://javaguide.cn/java/io/io-basis.html">Java IO基础知识总结</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/java/io/java-io-nio.html">Java NIO - 基础详解</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45794943/article/details/124707318">Java中的零拷贝</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yh_zeng2/article/details/80885867">java nio解决半包粘包问题</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/IO%E7%BC%96%E7%A8%8B/" rel="tag"># IO编程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/22/git/" rel="prev" title="git">
+      <i class="fa fa-chevron-left"></i> git
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-IO"><span class="nav-number">1.</span> <span class="nav-text">Java.IO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#File"><span class="nav-number">1.1.</span> <span class="nav-text">File</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#InputStream"><span class="nav-number">1.2.</span> <span class="nav-text">InputStream</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FileInputStream"><span class="nav-number">1.3.</span> <span class="nav-text">FileInputStream</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BufferInputStream"><span class="nav-number">1.4.</span> <span class="nav-text">BufferInputStream</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-NIO"><span class="nav-number">2.</span> <span class="nav-text">Java.NIO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Buffer"><span class="nav-number">2.1.</span> <span class="nav-text">Buffer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="nav-number">2.1.1.</span> <span class="nav-text">写模式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="nav-number">2.1.2.</span> <span class="nav-text">读模式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E7%94%A8clear%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.3.</span> <span class="nav-text">调用clear方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Compact"><span class="nav-number">2.2.</span> <span class="nav-text">Compact</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ByteBuffer"><span class="nav-number">2.2.1.</span> <span class="nav-text">ByteBuffer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mark-%E5%92%8C-reset"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">mark 和 reset</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Channel"><span class="nav-number">2.3.</span> <span class="nav-text">Channel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%BB%E5%A1%9E%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">阻塞模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NIO%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.4.1.</span> <span class="nav-text">NIO模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">小曾</p>
+  <div class="site-description" itemprop="description">长得丑就要多读书</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hl867669601" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hl867669601" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/zenghanlin97@163.com" title="E-Mail → zenghanlin97@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小曾</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
